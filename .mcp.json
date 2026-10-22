@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "ap_inbox": {
+      "command": ".venv/Scripts/python.exe",
+      "args": ["-m", "ap_agent.mcp_server"]
+    }
+  }
+}

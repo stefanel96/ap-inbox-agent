@@ -1,0 +1,26 @@
+# Hermes settings for the AP inbox agent (merged into <HERMES_HOME>/config.yaml by scripts/setup_hermes.py).
+# Replace <REPO> with the absolute path of this repository.
+
+model:
+  provider: "anthropic"            # API key from ANTHROPIC_API_KEY (environment / .env, never in this file)
+  default: "claude-sonnet-5-5"
+
+mcp_servers:
+  ap_inbox:                        # tools appear in Hermes as mcp_ap_inbox_<tool>
+    command: "<REPO>/.venv/Scripts/python.exe"
+    args: ["-m", "ap_agent.mcp_server"]
+    cwd: "<REPO>"
+    timeout: 120
+    connect_timeout: 60
+
+skills:
+  external_dirs:
+    - "<REPO>/hermes/skills"       # the ap-inbox-analyst skill, versioned with the code
+  write_approval: true             # the agent can't silently rewrite its own skills; changes are staged for review
+
+memory:
+  write_approval: true
+
+# The demo starts Hermes with only the inbox tools and skills:
+#   hermes chat --toolsets "mcp-ap_inbox,skills"
+# so terminal, file, web and browser tools are not available to this agent.

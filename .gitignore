@@ -1,0 +1,13 @@
+# secrets and data never go into the repo
+.env
+*.db
+*.db-wal
+*.db-shm
+*.log
+data/
+incoming/
+
+# python
+.venv/
+__pycache__/
+*.pyc
